@@ -1,69 +1,95 @@
-# Welcome to your Lovable project
+# ZAPPY Campus Canteen Manager
 
-## Project info
+ZAPPY Campus Canteen Manager is a comprehensive application designed to streamline the management of campus canteens. This project offers various features to improve the efficiency of canteen operations, ensuring a hassle-free experience for both staff and students.
 
-**URL**: https://lovable.dev/projects/d41ee3e5-ca74-42f1-b488-26498451303c
+## Features
 
-## How can I edit this code?
+- **User Authentication**: Secure login and registration system for canteen staff and students.
+- **Menu Management**: Easily manage and update the canteen menu, including adding, editing, and removing items.
+- **Order Management**: Efficiently handle orders placed by students, with real-time updates on order status.
+- **Inventory Management**: Keep track of stock levels and receive notifications when items are running low.
+- **Payment Integration**: Seamless integration with popular payment gateways for easy and secure transactions.
+- **Reports and Analytics**: Generate detailed reports on sales, inventory, and orders to help make informed decisions.
+- **Notifications**: Send notifications to students about new menu items, special offers, and order status updates.
 
-There are several ways of editing your application.
+## Tech Stack
 
-**Use Lovable**
+- **Frontend**: 
+  - TypeScript
+  - React
+  - Tailwind CSS
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d41ee3e5-ca74-42f1-b488-26498451303c) and start prompting.
+- **Backend**:
+  - Node.js
+  - Express.js
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Database**:
+  - MongoDB (or another database of your choice)
 
-**Use your preferred IDE**
+- **Tools & Libraries**:
+  - Vite
+  - ESLint
+  - React Hook Form
+  - Radix UI
+  - Supabase
+  - TanStack React Query
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Getting Started
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Prerequisites
 
-Follow these steps:
+- Node.js (v14 or higher)
+- npm or yarn
 
+### Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/adityaaa009/ZAPPY-campus-canteen-manager.git
+   cd ZAPPY-campus-canteen-manager
+   ```
+
+2. Install dependencies:
+   ```sh
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Set up environment variables:
+   Create a `.env` file in the root directory and add the necessary environment variables. Refer to `.env.example` for the required variables.
+
+### Running the Application
+
+To start the development server:
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
+# or
+yarn dev
 ```
 
-**Edit a file directly in GitHub**
+To build the application for production:
+```sh
+npm run build
+# or
+yarn build
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+To preview the production build:
+```sh
+npm run preview
+# or
+yarn preview
+```
 
-**Use GitHub Codespaces**
+## Contributing
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+We welcome contributions from the community! If you have any suggestions, bug reports, or feature requests, please create an issue or submit a pull request.
 
-## What technologies are used for this project?
+## License
 
-This project is built with .
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Contact
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/d41ee3e5-ca74-42f1-b488-26498451303c) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+For any inquiries or support, please contact [adityaaa009](https://github.com/adityaaa009).
