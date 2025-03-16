@@ -82,6 +82,10 @@ npm run preview
 yarn preview
 ```
 
+## Live Demo
+
+Check out the live demo of the application [here](https://zappy-canteen.netlify.app/).
+
 ## Contributing
 
 We welcome contributions from the community! If you have any suggestions, bug reports, or feature requests, please create an issue or submit a pull request.
