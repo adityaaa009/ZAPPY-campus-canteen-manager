@@ -1,5 +1,7 @@
 # ZAPPY Campus Canteen Manager
 
+![ZAPPY Platform Icon](Screenshot%202025-03-17%20041554.png)
+
 ZAPPY Campus Canteen Manager is a comprehensive application designed to streamline the management of campus canteens. This project offers various features to improve the efficiency of canteen operations, ensuring a hassle-free experience for both staff and students.
 
 ## Features
