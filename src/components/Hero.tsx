@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { Zap } from 'lucide-react';
 
 interface HeroProps {
   className?: string;
@@ -18,8 +19,8 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 bg-black/50 z-10">
         <img
-          src="/lovable-uploads/1406d301-9143-47f8-a9f3-81c7fe3ec76c.png"
-          alt="College Canteen Background"
+          src="/lovable-uploads/ad487a16-92b4-413d-bd6b-78d322599920.png"
+          alt="Zappy Food Background"
           className="w-full h-full object-cover mix-blend-overlay"
         />
       </div>
@@ -33,7 +34,7 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
           className="mb-4"
         >
           <span className="inline-block py-1 px-3 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-sm font-medium mb-4">
-            HERE YOU CAN FIND DELICIOUS FOODS
+            DELICIOUS FOOD, LIGHTNING-FAST SERVICE
           </span>
         </motion.div>
         
@@ -41,9 +42,10 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight flex justify-center items-center gap-4"
         >
-          UCE CANTEEN
+          <Zap className="h-12 w-12 md:h-16 md:w-16 lg:h-20 lg:w-20 text-accent" />
+          <span>Zappy</span>
         </motion.h1>
         
         <motion.div
@@ -52,20 +54,20 @@ const Hero: React.FC<HeroProps> = ({ className }) => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="max-w-xl mx-auto mb-8 text-white/80 text-lg"
         >
-          <p>Skip the lines and order directly from your phone. Browse our menu, place your order, and we'll notify you when it's ready!</p>
+          <p>Your Food, Faster than a Flash!</p>
         </motion.div>
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row justify-center gap-4"
+          className="flex justify-center"
         >
-          <Button asChild size="lg" className="rounded-full bg-primary hover:bg-primary/90 text-white px-8">
-            <Link to="/login">Login</Link>
-          </Button>
-          <Button asChild size="lg" variant="outline" className="rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-white/20 px-8">
-            <Link to="/menu">Browse Menu</Link>
+          <Button asChild size="lg" className="rounded-full bg-accent hover:bg-accent/90 text-white px-10 py-6 shadow-lg shadow-accent/30">
+            <Link to="/menu" className="flex items-center gap-2">
+              <span>Browse Menu</span>
+              <Zap className="h-5 w-5" />
+            </Link>
           </Button>
         </motion.div>
       </div>

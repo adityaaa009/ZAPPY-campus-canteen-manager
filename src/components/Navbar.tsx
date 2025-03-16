@@ -4,16 +4,33 @@ import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { ShoppingCart, Menu, User, Bell } from 'lucide-react';
+import { ShoppingCart, Menu, User, Bell, Zap } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { supabase } from '@/integrations/supabase/client';
 
 const Navbar: React.FC = () => {
   const location = useLocation();
   const isMobile = useIsMobile();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState<any>(null);
   
   useEffect(() => {
+    // Check auth state
+    const checkUser = async () => {
+      const { data } = await supabase.auth.getSession();
+      setIsLoggedIn(!!data.session);
+      setUser(data.session?.user || null);
+    };
+    
+    checkUser();
+    
+    // Subscribe to auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setIsLoggedIn(!!session);
+      setUser(session?.user || null);
+    });
+    
     const handleScroll = () => {
       if (window.scrollY > 10) {
         setIsScrolled(true);
@@ -23,15 +40,30 @@ const Navbar: React.FC = () => {
     };
     
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      subscription.unsubscribe();
+    };
   }, []);
 
-  const navLinks = [
-    { to: '/', label: 'Home' },
-    { to: '/menu', label: 'Menu' },
-    { to: '/orders', label: 'My Orders' },
-    { to: '/contact', label: 'Contact' },
-  ];
+  // Navigation links based on auth state
+  const getNavLinks = () => {
+    const baseLinks = [
+      { to: '/menu', label: 'Menu' }
+    ];
+    
+    if (isLoggedIn) {
+      return [
+        { to: '/', label: 'Home' },
+        ...baseLinks,
+        { to: '/orders', label: 'My Orders' }
+      ];
+    }
+    
+    return baseLinks;
+  };
+  
+  const navLinks = getNavLinks();
   
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -48,8 +80,11 @@ const Navbar: React.FC = () => {
     >
       <div className="container mx-auto flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
-          <span className="text-xl font-semibold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-            Campus Cuisine Hub
+          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-accent text-white">
+            <Zap className="h-6 w-6 transform -rotate-12" strokeWidth={2.5} />
+          </div>
+          <span className="text-xl font-semibold bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">
+            Zappy
           </span>
         </Link>
 
@@ -61,9 +96,9 @@ const Navbar: React.FC = () => {
                 key={link.to}
                 to={link.to}
                 className={cn(
-                  "relative font-medium transition-colors hover:text-primary",
+                  "relative font-medium transition-colors hover:text-accent",
                   isActive(link.to) 
-                    ? "text-primary after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:w-full after:bg-primary after:content-['']" 
+                    ? "text-accent after:absolute after:bottom-[-4px] after:left-0 after:h-0.5 after:w-full after:bg-accent after:content-['']" 
                     : "text-foreground/70"
                 )}
               >
@@ -84,13 +119,13 @@ const Navbar: React.FC = () => {
                 <ShoppingCart className="h-5 w-5 text-gray-700" />
               </Link>
               <Link to="/profile" className="relative">
-                <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center text-primary hover:bg-primary/30 transition-colors">
+                <div className="h-8 w-8 rounded-full bg-accent/20 flex items-center justify-center text-accent hover:bg-accent/30 transition-colors">
                   <User className="h-5 w-5" />
                 </div>
               </Link>
             </>
           ) : (
-            <Button asChild variant="default" className="shadow-none rounded-full">
+            <Button asChild variant="default" className="shadow-none rounded-full bg-accent hover:bg-accent/90">
               <Link to="/login">Log In</Link>
             </Button>
           )}
@@ -113,7 +148,7 @@ const Navbar: React.FC = () => {
                       className={cn(
                         "py-2 px-4 rounded-md transition-colors",
                         isActive(link.to) 
-                          ? "bg-primary/10 text-primary font-medium" 
+                          ? "bg-accent/10 text-accent font-medium" 
                           : "text-foreground/70 hover:bg-gray-100"
                       )}
                     >

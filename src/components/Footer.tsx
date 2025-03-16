@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Linkedin, Rss, Instagram } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Instagram, Zap } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -11,12 +11,17 @@ const Footer: React.FC = () => {
           {/* Logo and About */}
           <div>
             <Link to="/" className="inline-block">
-              <h2 className="text-xl font-semibold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent mb-4">
-                Campus Cuisine Hub
-              </h2>
+              <div className="flex items-center gap-2">
+                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-accent text-white">
+                  <Zap className="h-5 w-5 transform -rotate-12" />
+                </div>
+                <h2 className="text-xl font-semibold bg-gradient-to-r from-accent to-accent/80 bg-clip-text text-transparent">
+                  Zappy
+                </h2>
+              </div>
             </Link>
-            <p className="text-gray-600 mb-4">
-              University College of Engineering's canteen management system for quick and efficient food ordering.
+            <p className="text-gray-600 mb-4 mt-4">
+              Your Food, Faster than a Flash! Skip the lines and order directly from your phone.
             </p>
             <div className="flex space-x-3">
               <a href="#" className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors" aria-label="Facebook">
@@ -31,9 +36,6 @@ const Footer: React.FC = () => {
               <a href="#" className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors" aria-label="Instagram">
                 <Instagram className="h-4 w-4 text-gray-600" />
               </a>
-              <a href="#" className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors" aria-label="RSS">
-                <Rss className="h-4 w-4 text-gray-600" />
-              </a>
             </div>
           </div>
           
@@ -41,10 +43,10 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-4">Navigation</h3>
             <ul className="space-y-3">
-              <li><Link to="/" className="text-gray-600 hover:text-primary transition-colors">Home</Link></li>
-              <li><Link to="/menu" className="text-gray-600 hover:text-primary transition-colors">Menu</Link></li>
-              <li><Link to="/orders" className="text-gray-600 hover:text-primary transition-colors">My Orders</Link></li>
-              <li><Link to="/contact" className="text-gray-600 hover:text-primary transition-colors">Contact Us</Link></li>
+              <li><Link to="/" className="text-gray-600 hover:text-accent transition-colors">Home</Link></li>
+              <li><Link to="/menu" className="text-gray-600 hover:text-accent transition-colors">Menu</Link></li>
+              <li><Link to="/orders" className="text-gray-600 hover:text-accent transition-colors">My Orders</Link></li>
+              <li><Link to="/contact" className="text-gray-600 hover:text-accent transition-colors">Contact Us</Link></li>
             </ul>
           </div>
           
@@ -52,10 +54,10 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-900 mb-4">Information</h3>
             <ul className="space-y-3">
-              <li><Link to="/about" className="text-gray-600 hover:text-primary transition-colors">About Us</Link></li>
-              <li><Link to="/faq" className="text-gray-600 hover:text-primary transition-colors">FAQs</Link></li>
-              <li><Link to="/terms" className="text-gray-600 hover:text-primary transition-colors">Terms of Service</Link></li>
-              <li><Link to="/privacy" className="text-gray-600 hover:text-primary transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/about" className="text-gray-600 hover:text-accent transition-colors">About Us</Link></li>
+              <li><Link to="/faq" className="text-gray-600 hover:text-accent transition-colors">FAQs</Link></li>
+              <li><Link to="/terms" className="text-gray-600 hover:text-accent transition-colors">Terms of Service</Link></li>
+              <li><Link to="/privacy" className="text-gray-600 hover:text-accent transition-colors">Privacy Policy</Link></li>
             </ul>
           </div>
           
@@ -65,19 +67,19 @@ const Footer: React.FC = () => {
             <ul className="space-y-3 text-gray-600">
               <li>
                 <p className="text-gray-700 font-medium">Address:</p>
-                <p>University College of Engineering Muttom</p>
+                <p>NIET Greater Noida</p>
               </li>
               <li>
                 <p className="text-gray-700 font-medium">Hours:</p>
-                <p>Mon-Fri 8am-5pm</p>
+                <p>Mon-Fri 10am-5pm</p>
               </li>
               <li>
                 <p className="text-gray-700 font-medium">Phone:</p>
-                <p>+91 9876543210</p>
+                <p>+91 99999 99999</p>
               </li>
               <li>
                 <p className="text-gray-700 font-medium">Email:</p>
-                <p>canteen@uce.edu</p>
+                <p>zappy@gmail.com</p>
               </li>
             </ul>
           </div>
@@ -85,7 +87,7 @@ const Footer: React.FC = () => {
         
         <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} University College of Engineering Canteen. All rights reserved.
+            &copy; {new Date().getFullYear()} Zappy. All rights reserved.
           </p>
           <div className="flex space-x-4">
             <Link to="/terms" className="text-gray-500 hover:text-gray-700 text-sm">Terms</Link>
