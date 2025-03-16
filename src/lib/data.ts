@@ -1,5 +1,5 @@
 
-import { User, MenuItem, Order, Notification, DailySales } from '../types';
+import { User, MenuItem, Order, Notification, DailySales, OrderStatus } from '../types';
 import { v4 as uuidv4 } from 'uuid';
 
 // Mock Users
