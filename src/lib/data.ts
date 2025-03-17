@@ -30,7 +30,7 @@ export const menuItems: MenuItem[] = [
     name: 'Idli Sambar',
     price: 45,
     availability: 20,
-    imageUrl: '/lovable-uploads/95f470ec-bbde-49f0-aa80-726cd7505bc9.png',
+    imageUrl: '/lovable-uploads/749266c0-6bee-4b3b-a337-fdc747b1a509.png',
     category: 'breakfast',
     vendorId: '2',
     description: 'Soft rice cakes served with lentil stew and coconut chutney'
@@ -40,7 +40,7 @@ export const menuItems: MenuItem[] = [
     name: 'Masala Dosa',
     price: 50,
     availability: 15,
-    imageUrl: '/lovable-uploads/5831d746-2740-4b27-ac86-1ce6d6c9210e.png',
+    imageUrl: '/lovable-uploads/b9f83bb2-9ba7-4692-9b8c-f6ce1e84bb58.png',
     category: 'breakfast',
     vendorId: '2',
     description: 'Crispy rice pancake filled with spiced potato filling'
@@ -50,7 +50,7 @@ export const menuItems: MenuItem[] = [
     name: 'Poha',
     price: 30,
     availability: 25,
-    imageUrl: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?q=80&w=300&auto=format&fit=crop',
+    imageUrl: '/lovable-uploads/99316caa-41f9-40f4-a209-f769632d0067.png',
     category: 'breakfast',
     vendorId: '2',
     description: 'Flattened rice with onions, peanuts, and spices'
@@ -62,7 +62,7 @@ export const menuItems: MenuItem[] = [
     name: 'Thali',
     price: 75,
     availability: 10,
-    imageUrl: '/lovable-uploads/0c8af1f3-6b77-45e1-b4e6-527d5233effd.png',
+    imageUrl: '/lovable-uploads/803d9d96-92fc-47a3-8542-f467aa89c321.png',
     category: 'lunch',
     vendorId: '2',
     description: 'Complete meal with rice, dal, curry, yogurt, and sides'
@@ -72,7 +72,7 @@ export const menuItems: MenuItem[] = [
     name: 'Biryani',
     price: 85,
     availability: 8,
-    imageUrl: '/lovable-uploads/1383dfd2-2711-4ee7-90f9-7a6759ba7b76.png',
+    imageUrl: '/lovable-uploads/6a694a21-41e3-45ca-93ab-378db5a2e8fc.png',
     category: 'lunch',
     vendorId: '2',
     description: 'Fragrant rice dish with tender meat and aromatic spices'
@@ -82,7 +82,7 @@ export const menuItems: MenuItem[] = [
     name: 'Chole Bhature',
     price: 65,
     availability: 12,
-    imageUrl: 'https://images.unsplash.com/photo-1626132647523-66c05eb70e4b?q=80&w=300&auto=format&fit=crop',
+    imageUrl: '/lovable-uploads/c5be605b-1206-4e7c-b9b6-af3a8ef481e0.png',
     category: 'lunch',
     vendorId: '2',
     description: 'Spiced chickpea curry with fried bread'
@@ -94,7 +94,7 @@ export const menuItems: MenuItem[] = [
     name: 'Samosa',
     price: 20,
     availability: 30,
-    imageUrl: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=300&auto=format&fit=crop',
+    imageUrl: '/lovable-uploads/9df60565-0020-445d-83bb-6d17e09ea251.png',
     category: 'snacks',
     vendorId: '2',
     description: 'Crispy pastry filled with spiced potatoes and peas'
@@ -104,7 +104,7 @@ export const menuItems: MenuItem[] = [
     name: 'Vada Pav',
     price: 25,
     availability: 25,
-    imageUrl: 'https://images.unsplash.com/photo-1612498365497-baf735ce70b9?q=80&w=300&auto=format&fit=crop',
+    imageUrl: '/lovable-uploads/a162069f-3fa8-4696-a970-0f2c3e215fb5.png',
     category: 'snacks',
     vendorId: '2',
     description: 'Spiced potato fritter in a bun with chutneys'
@@ -114,7 +114,7 @@ export const menuItems: MenuItem[] = [
     name: 'Vegetable Cutlets',
     price: 12.50,
     availability: 20,
-    imageUrl: '/lovable-uploads/3d97ad2e-ee4d-4db2-994c-a1a2037fb8f6.png',
+    imageUrl: '/lovable-uploads/4d3abf11-e8be-4983-8bb2-e8a052d962e6.png',
     category: 'snacks',
     vendorId: '2',
     description: 'Mixed vegetable patties with spices, crispy fried'
@@ -126,7 +126,7 @@ export const menuItems: MenuItem[] = [
     name: 'Masala Chai',
     price: 15,
     availability: 40,
-    imageUrl: 'https://images.unsplash.com/photo-1565200583395-ec2296ef73df?q=80&w=300&auto=format&fit=crop',
+    imageUrl: '/lovable-uploads/ea0b9f9e-888c-41aa-bb74-be95387c36f5.png',
     category: 'drinks',
     vendorId: '2',
     description: 'Spiced tea with milk'
@@ -136,7 +136,7 @@ export const menuItems: MenuItem[] = [
     name: 'Cold Coffee',
     price: 35,
     availability: 30,
-    imageUrl: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc39?q=80&w=300&auto=format&fit=crop',
+    imageUrl: '/lovable-uploads/2b69947f-3a41-4cbe-a0b7-f17684e61841.png',
     category: 'drinks',
     vendorId: '2',
     description: 'Chilled coffee with milk and sugar'
@@ -146,7 +146,7 @@ export const menuItems: MenuItem[] = [
     name: 'Soft Drinks',
     price: 25,
     availability: 50,
-    imageUrl: '/lovable-uploads/032cff33-56cf-4008-80d5-f5eb9e3e1efa.png',
+    imageUrl: '/lovable-uploads/0978e6f7-3445-41f3-8fd0-290224cc048d.png',
     category: 'drinks',
     vendorId: '2',
     description: 'Various branded soft drinks'

@@ -111,6 +111,15 @@ const Menu: React.FC = () => {
               </TabsContent>
             ))}
           </Tabs>
+          
+          {/* Browse Menu Button at Bottom */}
+          <div className="flex justify-center mb-12">
+            <Button asChild className="px-8 py-6 text-lg rounded-xl bg-[#f26841] hover:bg-[#f26841]/90 text-white">
+              <Link to="/menu">
+                Browse Full Menu
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
       

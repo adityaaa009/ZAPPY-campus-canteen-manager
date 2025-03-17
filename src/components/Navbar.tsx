@@ -81,13 +81,6 @@ const Navbar: React.FC = () => {
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-4">
-          <Link to="/menu" className="relative py-2 px-4 text-white font-medium hover:text-gray-100">
-            Menu
-          </Link>
-        </div>
-
         <div className="flex items-center space-x-2">
           <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 rounded-full">
             <Search className="h-5 w-5" />
@@ -124,17 +117,6 @@ const Navbar: React.FC = () => {
               </SheetTrigger>
               <SheetContent side="right" className="w-[75vw] sm:w-[350px] pt-12 bg-[#f8f8f8] border-l border-gray-200">
                 <nav className="flex flex-col space-y-4">
-                  <Link
-                    to="/menu"
-                    className={cn(
-                      "py-2 px-4 rounded-md transition-colors",
-                      location.pathname === "/menu" 
-                        ? "bg-[#f26841]/10 text-[#f26841] font-medium" 
-                        : "text-foreground/70 hover:bg-gray-100"
-                    )}
-                  >
-                    Menu
-                  </Link>
                   {isLoggedIn && (
                     <>
                       <Link
