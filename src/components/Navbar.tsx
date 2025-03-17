@@ -59,7 +59,7 @@ const Navbar: React.FC = () => {
         </Link>
 
         <div className="flex items-center space-x-2">
-          <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 rounded-full py-0 mx-[12px] my-[2px] font-bold">
+          <Button variant="ghost" size="icon" className="text-white rounded-full py-0 mx-[12px] my-[2px] font-bold bg-transparent">
             <Search className="h-5 w-5" />
             <span className="sr-only">Search</span>
           </Button>
