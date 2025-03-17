@@ -52,7 +52,7 @@ const FeaturedItem: React.FC<FeaturedItemProps> = ({ item, className }) => {
           </div>
         )}
         
-        <div className="absolute top-2 right-2 px-2 py-1 rounded-full bg-white/90 backdrop-blur-sm text-primary font-semibold">
+        <div className="absolute top-2 right-2 px-2 py-1 rounded-full bg-white/90 backdrop-blur-sm text-[#f26841] font-semibold">
           ₹{item.price.toFixed(2)}
         </div>
       </div>
@@ -70,7 +70,7 @@ const FeaturedItem: React.FC<FeaturedItemProps> = ({ item, className }) => {
           
           <Button 
             size="sm" 
-            className="rounded-full"
+            className="rounded-full bg-[#f26841] hover:bg-[#f26841]/90 text-white"
             disabled={item.availability === 0}
             onClick={handleAddToCart}
           >

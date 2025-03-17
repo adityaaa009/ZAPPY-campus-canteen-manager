@@ -74,6 +74,13 @@ export default {
 					700: '#334155',
 					800: '#1e293b',
 					900: '#0f172a',
+				},
+				// New palette from the image
+				zappy: {
+					green: '#3e815b',  // Dark green from top
+					lightgray: '#f8f8f8', // Light gray from middle
+					orange: '#f3915b', // Orange from second to bottom
+					red: '#f26841',    // Red from bottom
 				}
 			},
 			borderRadius: {

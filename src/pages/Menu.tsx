@@ -31,14 +31,14 @@ const Menu: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-zappy-lightgray">
       <Navbar />
       
       <div className="pt-24 flex-grow">
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="mb-8 text-center">
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">Our Menu</h1>
+            <h1 className="text-3xl md:text-4xl font-bold mb-2 text-zappy-green">Our Menu</h1>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Explore our delicious offerings from breakfast to snacks, all prepared fresh in our campus canteen.
             </p>
@@ -50,18 +50,18 @@ const Menu: React.FC = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <Input
                 placeholder="Search menu items..."
-                className="pl-10"
+                className="pl-10 border-zappy-orange/30 focus-visible:ring-zappy-orange/50"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
             
-            <Button asChild variant="outline" className="space-x-2">
+            <Button asChild variant="outline" className="space-x-2 border-zappy-orange text-zappy-orange hover:bg-zappy-orange/10">
               <Link to="/cart">
                 <ShoppingCart className="h-4 w-4" />
                 <span>Cart</span>
                 {cartCount > 0 && (
-                  <Badge variant="default" className="ml-1 h-5 w-5 p-0 flex items-center justify-center rounded-full">
+                  <Badge variant="default" className="ml-1 h-5 w-5 p-0 flex items-center justify-center rounded-full bg-zappy-red text-white">
                     {cartCount}
                   </Badge>
                 )}
@@ -72,12 +72,12 @@ const Menu: React.FC = () => {
           {/* Tabs */}
           <Tabs defaultValue="all" className="mb-12">
             <div className="overflow-x-auto pb-2">
-              <TabsList className="inline-flex w-auto">
+              <TabsList className="inline-flex w-auto bg-white/50 p-1">
                 {categories.map((category) => (
                   <TabsTrigger 
                     key={category} 
                     value={category}
-                    className="capitalize"
+                    className="capitalize data-[state=active]:bg-zappy-orange data-[state=active]:text-white"
                   >
                     {category}
                   </TabsTrigger>
@@ -101,7 +101,7 @@ const Menu: React.FC = () => {
                 </div>
                 
                 {getCategoryItems(category).length === 0 && (
-                  <div className="text-center py-12">
+                  <div className="text-center py-12 bg-white rounded-lg shadow-sm">
                     <h3 className="text-lg font-medium text-gray-900">No items found</h3>
                     <p className="mt-1 text-gray-500">
                       Try adjusting your search or filter to find what you're looking for.
