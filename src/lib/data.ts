@@ -30,7 +30,7 @@ export const menuItems: MenuItem[] = [
     name: 'Idli Sambar',
     price: 45,
     availability: 20,
-    imageUrl: '/lovable-uploads/749266c0-6bee-4b3b-a337-fdc747b1a509.png',
+    imageUrl: '/lovable-uploads/68b7ece2-4d82-4eab-8182-748bcb37d813.png',
     category: 'breakfast',
     vendorId: '2',
     description: 'Soft rice cakes served with lentil stew and coconut chutney'
@@ -40,7 +40,7 @@ export const menuItems: MenuItem[] = [
     name: 'Masala Dosa',
     price: 50,
     availability: 15,
-    imageUrl: '/lovable-uploads/b9f83bb2-9ba7-4692-9b8c-f6ce1e84bb58.png',
+    imageUrl: '/lovable-uploads/10e11383-ebd2-4385-9e76-0e78d9c98a7d.png',
     category: 'breakfast',
     vendorId: '2',
     description: 'Crispy rice pancake filled with spiced potato filling'
@@ -50,7 +50,7 @@ export const menuItems: MenuItem[] = [
     name: 'Poha',
     price: 30,
     availability: 25,
-    imageUrl: '/lovable-uploads/99316caa-41f9-40f4-a209-f769632d0067.png',
+    imageUrl: '/lovable-uploads/bffa26e2-da0c-46ac-9213-5973f64ac794.png',
     category: 'breakfast',
     vendorId: '2',
     description: 'Flattened rice with onions, peanuts, and spices'

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
@@ -6,12 +7,15 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { ShoppingCart, Menu, User, Search } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { supabase } from '@/integrations/supabase/client';
+
 const Navbar: React.FC = () => {
   const location = useLocation();
   const isMobile = useIsMobile();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState<any>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
   useEffect(() => {
     // Check auth state
     const checkUser = async () => {
@@ -32,19 +36,36 @@ const Navbar: React.FC = () => {
       setIsLoggedIn(!!session);
       setUser(session?.user || null);
     });
+
     const handleScroll = () => {
+      // Calculate scroll percentage (capped at 100%)
+      const scrollPercentage = Math.min(window.scrollY / 100, 1);
+      setScrollProgress(scrollPercentage);
+      
       if (window.scrollY > 10) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
     };
+    
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
       subscription.unsubscribe();
     };
   }, []);
+
+  // Calculate the color for icons based on scroll progress
+  const getIconColor = () => {
+    // Start with white (255,255,255) and transition to black (0,0,0)
+    const red = Math.round(255 - (255 * scrollProgress));
+    const green = Math.round(255 - (255 * scrollProgress));
+    const blue = Math.round(255 - (255 * scrollProgress));
+    
+    return `rgb(${red}, ${green}, ${blue})`;
+  };
+
   return <header className={cn("fixed top-0 w-full z-50 transition-all duration-300 px-4 md:px-8", isScrolled ? "py-2 bg-glass shadow-soft backdrop-blur-md border-b border-gray-200/50" : "py-4 bg-transparent")}>
       <div className="container mx-auto flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
@@ -59,30 +80,57 @@ const Navbar: React.FC = () => {
         </Link>
 
         <div className="flex items-center space-x-2">
-          <Button variant="ghost" size="icon" className="text-white rounded-full py-0 mx-[12px] my-[2px] font-bold bg-transparent">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="rounded-full py-0 mx-[12px] my-[2px] font-bold bg-transparent transition-colors"
+            style={{ color: getIconColor() }}
+          >
             <Search className="h-5 w-5" />
             <span className="sr-only">Search</span>
           </Button>
           
-          <Link to="/cart" className="relative p-2 text-white hover:bg-white/10 rounded-full transition-colors flex items-center justify-center">
+          <Link 
+            to="/cart" 
+            className="relative p-2 hover:bg-white/10 rounded-full transition-colors flex items-center justify-center"
+            style={{ color: getIconColor() }}
+          >
             <ShoppingCart className="h-5 w-5" />
             <span className="sr-only">Cart</span>
           </Link>
           
-          {isLoggedIn ? <Link to="/profile" className="relative p-2 text-white hover:bg-white/10 rounded-full transition-colors flex items-center justify-center">
+          {isLoggedIn ? (
+            <Link 
+              to="/profile" 
+              className="relative p-2 hover:bg-white/10 rounded-full transition-colors flex items-center justify-center"
+              style={{ color: getIconColor() }}
+            >
               <User className="h-5 w-5" />
               <span className="sr-only">Profile</span>
-            </Link> : <Button asChild variant="ghost" className="text-white hover:bg-white/10 rounded-full">
+            </Link>
+          ) : (
+            <Button 
+              asChild 
+              variant="ghost" 
+              className="hover:bg-white/10 rounded-full transition-colors"
+              style={{ color: getIconColor() }}
+            >
               <Link to="/login" className="flex items-center space-x-1">
                 <User className="h-5 w-5" />
                 <span className="sr-only md:not-sr-only">Sign In</span>
               </Link>
-            </Button>}
+            </Button>
+          )}
 
           {/* Mobile Menu */}
           {isMobile && <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10 rounded-full md:hidden">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="hover:bg-white/10 rounded-full md:hidden transition-colors"
+                  style={{ color: getIconColor() }}
+                >
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Toggle menu</span>
                 </Button>
