@@ -5,6 +5,7 @@ import { PlusCircle } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
 import { MenuItem } from '@/types';
+import { useCart } from '@/contexts/CartContext';
 
 interface FeaturedItemProps {
   item: MenuItem;
@@ -14,8 +15,10 @@ interface FeaturedItemProps {
 const FeaturedItem: React.FC<FeaturedItemProps> = ({ item, className }) => {
   const { toast } = useToast();
   const [imageError, setImageError] = useState(false);
+  const { addItem } = useCart();
   
   const handleAddToCart = () => {
+    addItem(item);
     toast({
       title: "Added to Cart",
       description: `${item.name} has been added to your cart.`,

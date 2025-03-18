@@ -1,129 +1,143 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { ShoppingCart, Menu, User, Search } from 'lucide-react';
-import { useIsMobile } from '@/hooks/use-mobile';
-import { supabase } from '@/integrations/supabase/client';
+import { Menu, Search, ShoppingCart, User } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { useCart } from '@/contexts/CartContext';
 
 const Navbar: React.FC = () => {
-  const location = useLocation();
-  const isMobile = useIsMobile();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState<any>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
+  const [isLoggedIn] = useState(false);
+  const location = useLocation();
+  const { itemCount } = useCart();
+  
+  const isMobile = window.innerWidth < 768;
+  
   useEffect(() => {
-    // Check auth state
-    const checkUser = async () => {
-      const {
-        data
-      } = await supabase.auth.getSession();
-      setIsLoggedIn(!!data.session);
-      setUser(data.session?.user || null);
-    };
-    checkUser();
-
-    // Subscribe to auth changes
-    const {
-      data: {
-        subscription
-      }
-    } = supabase.auth.onAuthStateChange((event, session) => {
-      setIsLoggedIn(!!session);
-      setUser(session?.user || null);
-    });
-
     const handleScroll = () => {
-      // Calculate scroll percentage (capped at 100%)
-      const scrollPercentage = Math.min(window.scrollY / 100, 1);
-      setScrollProgress(scrollPercentage);
-      
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 0);
     };
     
     window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      subscription.unsubscribe();
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Calculate the color for icons based on scroll progress
+  
   const getIconColor = () => {
-    // Start with white (255,255,255) and transition to black (0,0,0)
-    const red = Math.round(255 - (255 * scrollProgress));
-    const green = Math.round(255 - (255 * scrollProgress));
-    const blue = Math.round(255 - (255 * scrollProgress));
-    
-    return `rgb(${red}, ${green}, ${blue})`;
+    if (isScrolled || location.pathname !== '/') {
+      return '#1a1a1a';
+    }
+    return '#ffffff';
   };
-
-  return <header className={cn("fixed top-0 w-full z-50 transition-all duration-300 px-4 md:px-8", isScrolled ? "py-2 bg-glass shadow-soft backdrop-blur-md border-b border-gray-200/50" : "py-4 bg-transparent")}>
-      <div className="container mx-auto flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-2">
-          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#f26841] text-white">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform -rotate-12">
-              <path d="M13 3L4 14H13L11 21L20 10H11L13 3Z" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-          <span className="text-xl font-semibold bg-gradient-to-r from-[#f26841] to-[#f26841]/80 bg-clip-text text-transparent">
-            Zappy
-          </span>
-        </Link>
-
-        <div className="flex items-center space-x-2">
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="rounded-full py-0 mx-[12px] my-[2px] font-bold bg-transparent transition-colors"
-            style={{ color: getIconColor() }}
-          >
-            <Search className="h-5 w-5" />
-            <span className="sr-only">Search</span>
-          </Button>
-          
+  
+  return (
+    <header 
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        isScrolled || location.pathname !== '/' 
+          ? "bg-white shadow-sm py-2" 
+          : "bg-transparent py-4"
+      )}
+    >
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
           <Link 
-            to="/cart" 
-            className="relative p-2 hover:bg-white/10 rounded-full transition-colors flex items-center justify-center"
-            style={{ color: getIconColor() }}
+            to="/" 
+            className="flex items-center space-x-2"
           >
-            <ShoppingCart className="h-5 w-5" />
-            <span className="sr-only">Cart</span>
+            <div className="w-8 h-8 rounded-full bg-[#f26841] flex items-center justify-center">
+              <span className="text-white font-bold">Z</span>
+            </div>
+            <span 
+              className="text-xl font-bold transition-colors"
+              style={{ color: getIconColor() }}
+            >
+              Zappy
+            </span>
           </Link>
           
-          {isLoggedIn ? (
+          {/* Desktop Navigation */}
+          {!isMobile && (
+            <nav className="hidden md:flex items-center space-x-6">
+              <Link 
+                to="/" 
+                className={cn(
+                  "transition-colors",
+                  location.pathname === '/' 
+                    ? "text-[#f26841] font-medium" 
+                    : "text-foreground/70 hover:text-foreground"
+                )}
+              >
+                Home
+              </Link>
+              {isLoggedIn && (
+                <Link 
+                  to="/orders" 
+                  className={cn(
+                    "transition-colors",
+                    location.pathname === '/orders' 
+                      ? "text-[#f26841] font-medium" 
+                      : "text-foreground/70 hover:text-foreground"
+                  )}
+                >
+                  My Orders
+                </Link>
+              )}
+            </nav>
+          )}
+          
+          {/* Actions */}
+          <div className="flex items-center space-x-2">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="rounded-full py-0 mx-[12px] my-[2px] font-bold bg-transparent transition-colors"
+              style={{ color: getIconColor() }}
+            >
+              <Search className="h-5 w-5" />
+              <span className="sr-only">Search</span>
+            </Button>
+            
             <Link 
-              to="/profile" 
+              to="/cart" 
               className="relative p-2 hover:bg-white/10 rounded-full transition-colors flex items-center justify-center"
               style={{ color: getIconColor() }}
             >
-              <User className="h-5 w-5" />
-              <span className="sr-only">Profile</span>
+              <ShoppingCart className="h-5 w-5" />
+              {itemCount > 0 && (
+                <span className="absolute -top-1 -right-1 h-4 w-4 text-xs flex items-center justify-center bg-[#f26841] text-white rounded-full">
+                  {itemCount}
+                </span>
+              )}
+              <span className="sr-only">Cart</span>
             </Link>
-          ) : (
-            <Button 
-              asChild 
-              variant="ghost" 
-              className="hover:bg-white/10 rounded-full transition-colors"
-              style={{ color: getIconColor() }}
-            >
-              <Link to="/login" className="flex items-center space-x-1">
+            
+            {isLoggedIn ? (
+              <Link 
+                to="/profile" 
+                className="relative p-2 hover:bg-white/10 rounded-full transition-colors flex items-center justify-center"
+                style={{ color: getIconColor() }}
+              >
                 <User className="h-5 w-5" />
-                <span className="sr-only md:not-sr-only">Sign In</span>
+                <span className="sr-only">Profile</span>
               </Link>
-            </Button>
-          )}
+            ) : (
+              <Button 
+                asChild 
+                variant="ghost" 
+                className="hover:bg-white/10 rounded-full transition-colors"
+                style={{ color: getIconColor() }}
+              >
+                <Link to="/login" className="flex items-center space-x-1">
+                  <User className="h-5 w-5" />
+                  <span className="sr-only md:not-sr-only">Sign In</span>
+                </Link>
+              </Button>
+            )}
 
-          {/* Mobile Menu */}
-          {isMobile && <Sheet>
+            {/* Mobile Menu */}
+            {isMobile && <Sheet>
               <SheetTrigger asChild>
                 <Button 
                   variant="ghost" 
@@ -148,8 +162,11 @@ const Navbar: React.FC = () => {
                 </nav>
               </SheetContent>
             </Sheet>}
+          </div>
         </div>
       </div>
-    </header>;
+    </header>
+  );
 };
+
 export default Navbar;
