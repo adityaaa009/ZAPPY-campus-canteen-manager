@@ -135,7 +135,7 @@ export const menuItems: MenuItem[] = [
     name: 'Cold Coffee',
     price: 35,
     availability: 30,
-    imageUrl: '/Menu Items/Soft Drinks.jpeg',
+    imageUrl: '/Menu Items/Cold Coffee.jpeg',
     category: 'drinks',
     vendorId: '2',
     description: 'Chilled coffee with milk and sugar'
