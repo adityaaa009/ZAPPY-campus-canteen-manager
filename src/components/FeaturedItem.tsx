@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { PlusCircle } from 'lucide-react';
@@ -14,6 +13,7 @@ interface FeaturedItemProps {
 
 const FeaturedItem: React.FC<FeaturedItemProps> = ({ item, className }) => {
   const { toast } = useToast();
+  const [imageError, setImageError] = useState(false);
   
   const handleAddToCart = () => {
     toast({
@@ -35,9 +35,10 @@ const FeaturedItem: React.FC<FeaturedItemProps> = ({ item, className }) => {
     >
       <div className="relative aspect-square overflow-hidden rounded-t-xl">
         <img 
-          src={item.imageUrl} 
+          src={imageError ? '/placeholder.svg' : item.imageUrl} 
           alt={item.name} 
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          onError={() => setImageError(true)}
         />
         
         {item.availability < 5 && item.availability > 0 && (

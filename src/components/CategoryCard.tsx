@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
@@ -17,6 +16,8 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
   link,
   className
 }) => {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <motion.div
       whileHover={{ y: -5 }}
@@ -29,9 +30,10 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
       <Link to={link} className="block">
         <div className="aspect-square overflow-hidden rounded-2xl">
           <img 
-            src={image} 
+            src={imageError ? '/placeholder.svg' : image} 
             alt={title} 
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            onError={() => setImageError(true)}
           />
         </div>
         

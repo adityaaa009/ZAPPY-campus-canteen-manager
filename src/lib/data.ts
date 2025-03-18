@@ -1,4 +1,3 @@
-
 import { User, MenuItem, Order, Notification, DailySales, OrderStatus } from '../types';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -30,7 +29,7 @@ export const menuItems: MenuItem[] = [
     name: 'Idli Sambar',
     price: 45,
     availability: 20,
-    imageUrl: '/lovable-uploads/68b7ece2-4d82-4eab-8182-748bcb37d813.png',
+    imageUrl: '/Menu Items/Idli Sambhar.jpeg',
     category: 'breakfast',
     vendorId: '2',
     description: 'Soft rice cakes served with lentil stew and coconut chutney'
@@ -40,7 +39,7 @@ export const menuItems: MenuItem[] = [
     name: 'Masala Dosa',
     price: 50,
     availability: 15,
-    imageUrl: '/lovable-uploads/10e11383-ebd2-4385-9e76-0e78d9c98a7d.png',
+    imageUrl: '/Menu Items/Masala Dosa.jpeg',
     category: 'breakfast',
     vendorId: '2',
     description: 'Crispy rice pancake filled with spiced potato filling'
@@ -50,7 +49,7 @@ export const menuItems: MenuItem[] = [
     name: 'Poha',
     price: 30,
     availability: 25,
-    imageUrl: '/lovable-uploads/bffa26e2-da0c-46ac-9213-5973f64ac794.png',
+    imageUrl: '/Menu Items/Poha.jpeg',
     category: 'breakfast',
     vendorId: '2',
     description: 'Flattened rice with onions, peanuts, and spices'
@@ -62,7 +61,7 @@ export const menuItems: MenuItem[] = [
     name: 'Thali',
     price: 75,
     availability: 10,
-    imageUrl: '/lovable-uploads/803d9d96-92fc-47a3-8542-f467aa89c321.png',
+    imageUrl: '/Menu Items/Thali.jpeg',
     category: 'lunch',
     vendorId: '2',
     description: 'Complete meal with rice, dal, curry, yogurt, and sides'
@@ -72,7 +71,7 @@ export const menuItems: MenuItem[] = [
     name: 'Biryani',
     price: 85,
     availability: 8,
-    imageUrl: '/lovable-uploads/6a694a21-41e3-45ca-93ab-378db5a2e8fc.png',
+    imageUrl: '/Menu Items/Biryani.jpeg',
     category: 'lunch',
     vendorId: '2',
     description: 'Fragrant rice dish with tender meat and aromatic spices'
@@ -82,7 +81,7 @@ export const menuItems: MenuItem[] = [
     name: 'Chole Bhature',
     price: 65,
     availability: 12,
-    imageUrl: '/lovable-uploads/c5be605b-1206-4e7c-b9b6-af3a8ef481e0.png',
+    imageUrl: '/Menu Items/Chole Bhature.jpeg',
     category: 'lunch',
     vendorId: '2',
     description: 'Spiced chickpea curry with fried bread'
@@ -94,7 +93,7 @@ export const menuItems: MenuItem[] = [
     name: 'Samosa',
     price: 20,
     availability: 30,
-    imageUrl: '/lovable-uploads/9df60565-0020-445d-83bb-6d17e09ea251.png',
+    imageUrl: '/Menu Items/Samosa.jpeg',
     category: 'snacks',
     vendorId: '2',
     description: 'Crispy pastry filled with spiced potatoes and peas'
@@ -104,7 +103,7 @@ export const menuItems: MenuItem[] = [
     name: 'Vada Pav',
     price: 25,
     availability: 25,
-    imageUrl: '/lovable-uploads/a162069f-3fa8-4696-a970-0f2c3e215fb5.png',
+    imageUrl: '/Menu Items/Vada Pav.jpeg',
     category: 'snacks',
     vendorId: '2',
     description: 'Spiced potato fritter in a bun with chutneys'
@@ -114,7 +113,7 @@ export const menuItems: MenuItem[] = [
     name: 'Vegetable Cutlets',
     price: 12.50,
     availability: 20,
-    imageUrl: '/lovable-uploads/4d3abf11-e8be-4983-8bb2-e8a052d962e6.png',
+    imageUrl: '/Menu Items/Vegetable Cutlets.jpeg',
     category: 'snacks',
     vendorId: '2',
     description: 'Mixed vegetable patties with spices, crispy fried'
@@ -126,7 +125,7 @@ export const menuItems: MenuItem[] = [
     name: 'Masala Chai',
     price: 15,
     availability: 40,
-    imageUrl: '/lovable-uploads/ea0b9f9e-888c-41aa-bb74-be95387c36f5.png',
+    imageUrl: '/Menu Items/Masala Chai.jpeg',
     category: 'drinks',
     vendorId: '2',
     description: 'Spiced tea with milk'
@@ -136,7 +135,7 @@ export const menuItems: MenuItem[] = [
     name: 'Cold Coffee',
     price: 35,
     availability: 30,
-    imageUrl: '/lovable-uploads/2b69947f-3a41-4cbe-a0b7-f17684e61841.png',
+    imageUrl: '/Menu Items/Soft Drinks.jpeg',
     category: 'drinks',
     vendorId: '2',
     description: 'Chilled coffee with milk and sugar'
@@ -146,7 +145,7 @@ export const menuItems: MenuItem[] = [
     name: 'Soft Drinks',
     price: 25,
     availability: 50,
-    imageUrl: '/lovable-uploads/0978e6f7-3445-41f3-8fd0-290224cc048d.png',
+    imageUrl: '/Menu Items/Soft Drinks.jpeg',
     category: 'drinks',
     vendorId: '2',
     description: 'Various branded soft drinks'

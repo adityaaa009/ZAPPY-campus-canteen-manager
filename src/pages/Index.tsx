@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
@@ -11,22 +10,22 @@ import { menuItems } from '@/lib/data';
 const Index = () => {
   const categories = [
     {
-      image: '/lovable-uploads/95f470ec-bbde-49f0-aa80-726cd7505bc9.png',
+      image: '/Menu Items/Breakfast.jpeg',
       title: 'Breakfast',
       link: '/menu?category=breakfast'
     },
     {
-      image: '/lovable-uploads/1383dfd2-2711-4ee7-90f9-7a6759ba7b76.png',
+      image: '/Menu Items/Lunch.jpeg',
       title: 'Lunch',
       link: '/menu?category=lunch'
     },
     {
-      image: '/lovable-uploads/3d97ad2e-ee4d-4db2-994c-a1a2037fb8f6.png',
+      image: '/Menu Items/Snacks.jpeg',
       title: 'Snacks',
       link: '/menu?category=snacks'
     },
     {
-      image: '/lovable-uploads/032cff33-56cf-4008-80d5-f5eb9e3e1efa.png',
+      image: '/Menu Items/Soft Drinks.jpeg',
       title: 'Soft Drinks',
       link: '/menu?category=drinks'
     }

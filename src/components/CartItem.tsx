@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import { CartItem as CartItemType } from '@/types';
@@ -18,6 +17,8 @@ const CartItem: React.FC<CartItemProps> = ({
   onDecrease,
   onRemove
 }) => {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <motion.div 
       initial={{ opacity: 0, height: 0 }}
@@ -28,9 +29,10 @@ const CartItem: React.FC<CartItemProps> = ({
     >
       <div className="h-16 w-16 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
         <img 
-          src={item.imageUrl} 
+          src={imageError ? '/placeholder.svg' : item.imageUrl} 
           alt={item.name} 
           className="h-full w-full object-cover"
+          onError={() => setImageError(true)}
         />
       </div>
       
@@ -39,7 +41,7 @@ const CartItem: React.FC<CartItemProps> = ({
         <p className="text-sm text-gray-500">₹{item.price.toFixed(2)} x {item.quantity}</p>
       </div>
       
-      <div className="flex flex-col sm:flex-row items-end sm:items-center ml-4">
+      <div className="flex flex-col sm:flex-row items-end sm:items-center gap-2">
         <div className="flex items-center mb-2 sm:mb-0 sm:mr-3">
           <Button 
             variant="outline" 
