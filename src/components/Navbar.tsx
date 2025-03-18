@@ -60,17 +60,6 @@ const Navbar: React.FC = () => {
           {/* Desktop Navigation */}
           {!isMobile && (
             <nav className="hidden md:flex items-center space-x-6">
-              <Link 
-                to="/" 
-                className={cn(
-                  "transition-colors",
-                  location.pathname === '/' 
-                    ? "text-[#f26841] font-medium" 
-                    : "text-foreground/70 hover:text-foreground"
-                )}
-              >
-                Home
-              </Link>
               {isLoggedIn && (
                 <Link 
                   to="/orders" 
@@ -152,9 +141,6 @@ const Navbar: React.FC = () => {
               <SheetContent side="right" className="w-[75vw] sm:w-[350px] pt-12 bg-[#f8f8f8] border-l border-gray-200">
                 <nav className="flex flex-col space-y-4">
                   {isLoggedIn && <>
-                      <Link to="/" className={cn("py-2 px-4 rounded-md transition-colors", location.pathname === "/" ? "bg-[#f26841]/10 text-[#f26841] font-medium" : "text-foreground/70 hover:bg-gray-100")}>
-                        Home
-                      </Link>
                       <Link to="/orders" className={cn("py-2 px-4 rounded-md transition-colors", location.pathname === "/orders" ? "bg-[#f26841]/10 text-[#f26841] font-medium" : "text-foreground/70 hover:bg-gray-100")}>
                         My Orders
                       </Link>
