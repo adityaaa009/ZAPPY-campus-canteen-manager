@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
 import { CartItem } from '@/types';
+import { supabase } from '@/integrations/supabase/client';
 
 interface CartContextType {
   items: CartItem[];
@@ -14,6 +15,22 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
+
+  // Check for pending cart items after login
+  useEffect(() => {
+    const checkPendingCart = async () => {
+      const { data: session } = await supabase.auth.getSession();
+      if (session?.session) {
+        const pendingCart = localStorage.getItem('pendingCart');
+        if (pendingCart) {
+          setItems(JSON.parse(pendingCart));
+          localStorage.removeItem('pendingCart');
+        }
+      }
+    };
+
+    checkPendingCart();
+  }, []);
 
   const addItem = useCallback((newItem: CartItem) => {
     setItems(prevItems => {

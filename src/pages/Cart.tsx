@@ -8,9 +8,10 @@ import Footer from '@/components/Footer';
 import CartItem from '@/components/CartItem';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '@/contexts/CartContext';
+import { supabase } from '@/integrations/supabase/client';
 
 const Cart: React.FC = () => {
-  const { items: cartItems, updateQuantity, removeItem } = useCart();
+  const { items: cartItems, updateQuantity, removeItem, clearCart } = useCart();
   const { toast } = useToast();
   const navigate = useNavigate();
   
@@ -19,13 +20,31 @@ const Cart: React.FC = () => {
     0
   );
   
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
+    // Check if user is authenticated
+    const { data } = await supabase.auth.getSession();
+    if (!data.session) {
+      // Store cart items in local storage to persist them
+      localStorage.setItem('pendingCart', JSON.stringify(cartItems));
+      
+      toast({
+        title: "Authentication Required",
+        description: "Please log in to complete your order.",
+        duration: 5000,
+      });
+      navigate('/login');
+      return;
+    }
+
     // In a real app, we would handle the checkout process here
     toast({
       title: "Order Placed Successfully!",
       description: "You can track your order status in the orders page.",
       duration: 3000,
     });
+    
+    // Clear the cart after successful order
+    clearCart();
     navigate('/orders');
   };
   
