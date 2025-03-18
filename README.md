@@ -86,7 +86,7 @@ yarn preview
 
 ## Live Demo
 
-Check out the live demo of the application [here](https://zappy-canteen.netlify.app/).
+Check out the live demo of the application [here](https://zappy-canteen.netlify.app/). 
 
 ## Contributing
 
