@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -13,6 +12,7 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
   const { toast } = useToast();
 
   const handleLogin = (e: React.FormEvent) => {
@@ -29,12 +29,9 @@ const Login: React.FC = () => {
         duration: 3000,
       });
       
-      // Redirect based on user role
-      if (user.role === 'vendor') {
-        navigate('/dashboard');
-      } else {
-        navigate('/menu');
-      }
+      // Get the previous path from location state or default to menu
+      const from = (location.state as any)?.from?.pathname || '/menu';
+      navigate(from);
     } else {
       toast({
         title: "Login Failed",
@@ -61,8 +58,8 @@ const Login: React.FC = () => {
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
           <Link to="/">
-            <h2 className="text-3xl font-extrabold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-              Campus Cuisine Hub
+            <h2 className="text-3xl font-extrabold text-[#f26841]">
+              ZAPPY
             </h2>
           </Link>
           <p className="mt-2 text-sm text-gray-600">
@@ -120,41 +117,42 @@ const Login: React.FC = () => {
                     Sign In
                   </Button>
                 </div>
-                
-                <div className="text-center mt-4">
-                  <p className="text-xs text-gray-500">
-                    For demo: Use john@university.edu (customer) or canteen@university.edu (vendor) with any password.
-                  </p>
-                </div>
               </form>
             </TabsContent>
             
             <TabsContent value="signup" className="p-6">
               <form onSubmit={handleSignup} className="space-y-4">
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="space-y-1">
-                    <Label htmlFor="first-name">First name</Label>
-                    <Input id="first-name" placeholder="John" required />
-                  </div>
-                  <div className="space-y-1">
-                    <Label htmlFor="last-name">Last name</Label>
-                    <Input id="last-name" placeholder="Doe" required />
-                  </div>
-                </div>
-                
                 <div className="space-y-1">
                   <Label htmlFor="signup-email">Email</Label>
-                  <Input id="signup-email" type="email" placeholder="you@example.com" required />
+                  <Input 
+                    id="signup-email" 
+                    type="email" 
+                    placeholder="you@example.com" 
+                    required
+                    className="transition-all duration-200"
+                  />
                 </div>
                 
                 <div className="space-y-1">
                   <Label htmlFor="signup-password">Password</Label>
-                  <Input id="signup-password" type="password" placeholder="••••••••" required />
+                  <Input 
+                    id="signup-password" 
+                    type="password" 
+                    placeholder="••••••••" 
+                    required
+                    className="transition-all duration-200"
+                  />
                 </div>
                 
                 <div className="space-y-1">
                   <Label htmlFor="confirm-password">Confirm Password</Label>
-                  <Input id="confirm-password" type="password" placeholder="••••••••" required />
+                  <Input 
+                    id="confirm-password" 
+                    type="password" 
+                    placeholder="••••••••" 
+                    required
+                    className="transition-all duration-200"
+                  />
                 </div>
                 
                 <div>
@@ -166,12 +164,6 @@ const Login: React.FC = () => {
             </TabsContent>
           </Tabs>
         </motion.div>
-        
-        <p className="mt-4 text-center text-sm text-gray-600">
-          <Link to="/" className="text-primary hover:text-primary/80">
-            ← Back to home
-          </Link>
-        </p>
       </div>
     </div>
   );
