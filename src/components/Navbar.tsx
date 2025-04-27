@@ -1,8 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, Search, ShoppingCart, User } from 'lucide-react';
+import { Menu, Search, ShoppingCart, User, ChefHat } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useCart } from '@/contexts/CartContext';
 import { Input } from '@/components/ui/input';
@@ -162,6 +163,19 @@ const Navbar: React.FC = () => {
               </Button>
             )}
 
+            {/* Vendor Portal Link */}
+            <Button 
+              asChild 
+              variant="ghost" 
+              className="hover:bg-white/10 rounded-full transition-colors"
+              style={{ color: getIconColor() }}
+            >
+              <Link to="/vendor/login" className="flex items-center space-x-1">
+                <ChefHat className="h-5 w-5" />
+                <span className="sr-only md:not-sr-only">Vendor Portal</span>
+              </Link>
+            </Button>
+
             {/* Mobile Menu */}
             {isMobile && <Sheet>
               <SheetTrigger asChild>
@@ -182,6 +196,10 @@ const Navbar: React.FC = () => {
                       My Orders
                     </Link>
                   )}
+                  <Link to="/vendor/login" className="py-2 px-4 rounded-md transition-colors flex items-center text-foreground/70 hover:bg-gray-100">
+                    <ChefHat className="h-4 w-4 mr-2" />
+                    Vendor Portal
+                  </Link>
                 </nav>
               </SheetContent>
             </Sheet>}
