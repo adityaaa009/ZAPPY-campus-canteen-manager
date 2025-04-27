@@ -11,12 +11,12 @@ import {
 } from '@/components/ui/card';
 import { Check, CookingPot, Clock } from 'lucide-react';
 import { format } from 'date-fns';
-import { Order, OrderStatus } from '@/types';
-import OrderStatus from '@/components/OrderStatus';
+import { Order, OrderStatus as OrderStatusType } from '@/types';
+import OrderStatusBadge from '@/components/OrderStatus';
 
 interface OrderCardProps {
   order: Order;
-  onUpdateStatus?: (orderId: string, newStatus: OrderStatus) => void;
+  onUpdateStatus?: (orderId: string, newStatus: OrderStatusType) => void;
   isVendorView?: boolean;
 }
 
@@ -25,13 +25,13 @@ const OrderCard: React.FC<OrderCardProps> = ({
   onUpdateStatus,
   isVendorView = false
 }) => {
-  const handleStatusUpdate = (newStatus: OrderStatus) => {
+  const handleStatusUpdate = (newStatus: OrderStatusType) => {
     if (onUpdateStatus) {
       onUpdateStatus(order.id, newStatus);
     }
   };
   
-  const getNextStatus = (): OrderStatus | null => {
+  const getNextStatus = (): OrderStatusType | null => {
     switch (order.status) {
       case 'pending':
         return 'preparing';
@@ -81,7 +81,7 @@ const OrderCard: React.FC<OrderCardProps> = ({
             <CardTitle className="text-lg">
               Order #{order.id}
             </CardTitle>
-            <OrderStatus status={order.status} />
+            <OrderStatusBadge status={order.status} />
           </div>
         </CardHeader>
         <CardContent className="p-4 pt-6">
