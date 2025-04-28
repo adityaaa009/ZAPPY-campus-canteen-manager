@@ -11,34 +11,49 @@ import { users } from '@/lib/data';
 const VendorLogin: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     
-    // Mock vendor authentication
+    // Enhanced vendor authentication with specific credentials
     const vendor = users.find(u => u.email === email && u.role === 'vendor');
     
-    if (vendor && password.length >= 6) {
-      toast({
-        title: "Vendor Login Successful",
-        description: `Welcome back, ${vendor.name}!`,
-        duration: 3000,
-      });
-      
-      // Store vendor session info
-      localStorage.setItem('vendorSession', JSON.stringify({ id: vendor.id, name: vendor.name }));
-      
-      navigate('/vendor/dashboard');
-    } else {
-      toast({
-        title: "Login Failed",
-        description: "Invalid vendor credentials. Please try again.",
-        variant: "destructive",
-        duration: 3000,
-      });
-    }
+    // Check for specific vendor email and password
+    const isValidCredentials = 
+      email === "canteen@university.edu" && 
+      password === "campus123";
+    
+    setTimeout(() => {
+      if (vendor && isValidCredentials) {
+        toast({
+          title: "Vendor Login Successful",
+          description: `Welcome back, ${vendor.name}!`,
+          duration: 3000,
+        });
+        
+        // Store vendor session info with more details
+        localStorage.setItem('vendorSession', JSON.stringify({ 
+          id: vendor.id, 
+          name: vendor.name,
+          email: vendor.email,
+          loginTime: new Date().toISOString()
+        }));
+        
+        navigate('/vendor/dashboard');
+      } else {
+        toast({
+          title: "Login Failed",
+          description: "Invalid vendor credentials. Please check your email and password.",
+          variant: "destructive",
+          duration: 3000,
+        });
+      }
+      setIsLoading(false);
+    }, 800);
   };
 
   return (
@@ -67,7 +82,7 @@ const VendorLogin: React.FC = () => {
               <Input 
                 id="email" 
                 type="email" 
-                placeholder="vendor@university.edu" 
+                placeholder="canteen@university.edu" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -91,9 +106,19 @@ const VendorLogin: React.FC = () => {
               />
             </div>
             
+            <div className="text-sm text-gray-500 bg-gray-50 p-2 rounded">
+              <p><strong>Demo Credentials:</strong></p>
+              <p>Email: canteen@university.edu</p>
+              <p>Password: campus123</p>
+            </div>
+            
             <div>
-              <Button type="submit" className="w-full">
-                Sign In as Vendor
+              <Button 
+                type="submit" 
+                className="w-full"
+                disabled={isLoading}
+              >
+                {isLoading ? 'Signing In...' : 'Sign In as Vendor'}
               </Button>
             </div>
             
