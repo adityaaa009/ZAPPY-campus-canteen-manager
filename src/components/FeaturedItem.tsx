@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -18,7 +19,13 @@ const FeaturedItem: React.FC<FeaturedItemProps> = ({ item, className }) => {
   const { addItem } = useCart();
   
   const handleAddToCart = () => {
-    addItem(item);
+    // Convert MenuItem to CartItem by adding the quantity property
+    const cartItem = {
+      ...item,
+      quantity: 1
+    };
+    
+    addItem(cartItem);
     toast({
       title: "Added to Cart",
       description: `${item.name} has been added to your cart.`,
