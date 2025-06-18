@@ -59,7 +59,7 @@ ZAPPY Campus Canteen Manager is a comprehensive application designed to streamli
    ```
 
 3. Set up environment variables:
-   Create a `.env` file in the root directory and add the necessary environment variables. Refer to `.env.example` for the required variables.
+   Create a `.env` file in the root directory and add the necessary environment variables. Refer to `.env.example` for the required variables..
 
 ### Running the Application
 
